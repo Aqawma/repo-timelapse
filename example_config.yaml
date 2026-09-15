@@ -1,0 +1,56 @@
+# Example config for repo_timelapse.py
+# Run with: python3 repo_timelapse.py --config example_config.yaml
+
+# GitHub URL (will be cloned) or a path to an existing local git repo.
+repo: https://github.com/Aqawma/obsidian-vault
+
+# Branch to check out. Omit to use the repo's default branch.
+branch: main
+
+# Glob patterns (fnmatch-style, matched against paths at HEAD) for the
+# files you want to watch evolve over time. Each panel in the video shows
+# one of these files.
+files:
+  - "1 EE Introduction.md"
+  - "2 EE Background.md"
+  - "3 Building the Model.md"
+  - "4 Linearizing & Expanding the Cubic.md"
+  - "5 Solving, Auxiliary Equation.md"
+  - "6 Numerical Analysis.md"
+  - "7 Results & Discussion.md"
+
+# Where to write the finished video.
+output: timelapse.mp4
+
+# Video frame rate.
+fps: 30
+
+# How long each commit's frame stays on screen, in seconds.
+seconds_per_commit: 0.4
+
+# Cap on number of commits rendered; history is evenly downsampled if it
+# has more commits than this (keeps runtime/video length reasonable).
+max_commits: 5000
+
+# Optional date filters, passed straight to `git log --since/--until`.
+since: null   # e.g. "2023-01-01"
+until: null   # e.g. "2024-01-01"
+
+# Output video canvas size.
+width: 1920
+height: 1080
+
+# Monospace font size used inside each file panel.
+font_size: 16
+
+# Pygments style name for syntax highlighting (e.g. monokai, dracula,
+# github-dark, one-dark). Falls back to plain text if pygments isn't installed.
+theme: monokai
+
+# Keep the cloned repo + rendered PNG frames on disk after finishing
+# (useful for debugging). Also settable via --keep-frames.
+keep_frames: false
+
+# Directory to clone/render into. Omit to use a temp directory that gets
+# cleaned up automatically (unless keep_frames is true).
+work_dir: null
